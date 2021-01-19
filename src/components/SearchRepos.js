@@ -2,8 +2,8 @@ import styled from "styled-components";
 const SearchForm = styled.form`
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
-  padding-right: 10px;
+  border-bottom: 1px solid #ccc;
+  padding: 0 10px 30px 0;
   input {
     font-size: 15px;
     flex-grow: 5;

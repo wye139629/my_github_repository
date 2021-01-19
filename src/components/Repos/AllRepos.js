@@ -1,5 +1,5 @@
 import fetchData from "../../shared/fetchData";
-import { RepoItem, RepoInfo } from "./reposStyle";
+import { RepoItem, RepoInfo, LanguageStyle } from "./reposStyle";
 function AllRepos({ repos, pages, toEndPage, updateRepo }) {
   const scrollHandler = (e) => {
     let scrollDistance = e.target.scrollTop;
@@ -25,10 +25,16 @@ function AllRepos({ repos, pages, toEndPage, updateRepo }) {
         return (
           <RepoItem key={index}>
             <ul>
-              <RepoInfo>{repo.name}</RepoInfo>
+              <RepoInfo size="25px" color="#0366d6">
+                {repo.name}
+              </RepoInfo>
               <RepoInfo>{repo.description}</RepoInfo>
-              <RepoInfo>{repo.language}</RepoInfo>
-              <RepoInfo>Link:{repo.url}</RepoInfo>
+              <LanguageStyle type={repo.language}>
+                {repo.language}
+              </LanguageStyle>
+              <RepoInfo>
+                Link: <a href={repo.html_url}>{repo.html_url}</a>
+              </RepoInfo>
             </ul>
           </RepoItem>
         );

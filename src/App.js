@@ -5,6 +5,26 @@ import fetchData from "./shared/fetchData";
 import SearchRepos from "./components/SearchRepos";
 import Repos from "./components/Repos/Repos";
 import Profile from "./components/Profile";
+import NavBar from "./shared/NavBar";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+  width: 80%;
+  box-sizing: border-box;
+  padding: 0 30px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`;
+const FlexWrapper = styled(Wrapper)`
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 10px;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
 function App() {
   const [allRepos, setAllRepos] = useState(null);
   const [classifiedRepo, setClassifiedRepo] = useState(null);
@@ -58,21 +78,26 @@ function App() {
 
   return (
     <div className="App">
-      <Profile />
-      <SearchRepos
-        languageOptions={languageOptions}
-        changeLanguage={changeLanguage}
-        searchingRepos={searchingRepos}
-      />
-      {repos && (
-        <Repos
-          repos={repos}
-          selectRepos={selectRepos}
-          pages={pages}
-          toEndPage={toEndPage}
-          updateRepo={updateRepo}
-        ></Repos>
-      )}
+      <NavBar />
+      <FlexWrapper>
+        <Profile />
+        <Wrapper>
+          <SearchRepos
+            languageOptions={languageOptions}
+            changeLanguage={changeLanguage}
+            searchingRepos={searchingRepos}
+          />
+          {repos && (
+            <Repos
+              repos={repos}
+              selectRepos={selectRepos}
+              pages={pages}
+              toEndPage={toEndPage}
+              updateRepo={updateRepo}
+            ></Repos>
+          )}
+        </Wrapper>
+      </FlexWrapper>
     </div>
   );
 }

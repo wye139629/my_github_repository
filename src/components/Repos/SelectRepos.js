@@ -6,10 +6,12 @@ function SelectRepos({ repos }) {
         return (
           <RepoItem key={index}>
             <ul>
-              <RepoInfo>{repo.name}</RepoInfo>
+              <RepoInfo size="25px" color="#0366d6">
+                {repo.name}
+              </RepoInfo>
               <RepoInfo>{repo.description}</RepoInfo>
               <RepoInfo>{repo.language}</RepoInfo>
-              <RepoInfo>Link:{repo.url}</RepoInfo>
+              <RepoInfo>Link:{repo.html_url}</RepoInfo>
             </ul>
           </RepoItem>
         );

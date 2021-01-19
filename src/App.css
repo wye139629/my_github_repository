@@ -28,8 +28,13 @@
   color: #61dafb;
 }
 .repo {
-  height: 90vh;
+  height: calc(100vh - 170px);
   overflow: auto;
+}
+@media screen and (max-width: 768px) {
+  .repo {
+    height: 45vh;
+  }
 }
 
 @keyframes App-logo-spin {
