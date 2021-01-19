@@ -18,6 +18,7 @@ function AllRepos({ repos, pages, toEndPage, updateRepo }) {
       });
     }
     // console.log(1);
+    if (!repos) return null;
   };
   return (
     <ul className="repo" onScroll={toEndPage ? null : scrollHandler}>
