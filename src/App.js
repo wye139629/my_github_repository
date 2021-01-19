@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import fetchData from "./shared/fetchData";
 import SearchRepos from "./components/SearchRepos";
 import Repos from "./components/Repos/Repos";
-
+import Profile from "./components/Profile";
 function App() {
   const [allRepos, setAllRepos] = useState(null);
   const [classifiedRepo, setClassifiedRepo] = useState(null);
@@ -13,12 +13,15 @@ function App() {
   const [toEndPage, setToEndPage] = useState(false);
   const [languageOptions, setLanguageOptions] = useState(null);
   const [selectRepos, setSelectRepos] = useState(null);
+
   useEffect(() => {
     const repoAmount = 5;
-    fetchData(repoAmount, pages).then((repoData) => setRepos(repoData));
+    const reposUrl = `/repos?per_page=${repoAmount}&page=${pages}`;
+    fetchData(reposUrl).then((repoData) => setRepos(repoData));
   }, []);
   useEffect(() => {
-    fetchData().then((repoData) => {
+    const reposUrl = `/repos?per_page=&page=`;
+    fetchData(reposUrl).then((repoData) => {
       const languages = repoData.reduce((accu, current) => {
         accu[current.language]
           ? accu[current.language].push(current)
@@ -55,6 +58,7 @@ function App() {
 
   return (
     <div className="App">
+      <Profile />
       <SearchRepos
         languageOptions={languageOptions}
         changeLanguage={changeLanguage}

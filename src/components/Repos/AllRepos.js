@@ -9,8 +9,9 @@ function AllRepos({ repos, pages, toEndPage, updateRepo }) {
     if (!toEndPage && toBottom) {
       pages += 1;
       const repoAmount = 5;
+      const reposUrl = `/repos?per_page=${repoAmount}&page=${pages}`;
       const cloneRepo = repos.concat();
-      fetchData(repoAmount, pages).then((newRepo) => {
+      fetchData(reposUrl).then((newRepo) => {
         toEndPage = newRepo.length < repoAmount;
         const updateRepos = cloneRepo.concat(newRepo);
         updateRepo(updateRepos, pages, toEndPage);
